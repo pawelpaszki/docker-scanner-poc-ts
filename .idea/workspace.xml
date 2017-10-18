@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0911868-855b-45bf-9768-55a46edd8674" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.md" afterPath="$PROJECT_DIR$/readme.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controllers/ContainerExtractor.ts" afterPath="$PROJECT_DIR$/src/controllers/ContainerExtractor.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controllers/ImageFetcher.ts" afterPath="$PROJECT_DIR$/src/controllers/ImageFetcher.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controllers/NodeVulnerAnalyzer.ts" afterPath="$PROJECT_DIR$/src/controllers/NodeVulnerAnalyzer.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controllers/TestRunner.ts" afterPath="$PROJECT_DIR$/src/controllers/TestRunner.ts" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,11 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ImageFetcher.ts" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ImageFetcher.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/controllers/ImageFetcher.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="23" column="31" lean-forward="false" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
+            <state relative-caret-position="510">
+              <caret line="40" column="61" lean-forward="true" selection-start-line="40" selection-start-column="61" selection-end-line="40" selection-end-column="61" />
               <folding>
                 <element signature="e#0#64#0" expanded="true" />
               </folding>
@@ -31,8 +34,8 @@
       <file leaf-file-name="ContainerExtractor.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controllers/ContainerExtractor.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-210">
-              <caret line="25" column="31" lean-forward="false" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
+            <state relative-caret-position="270">
+              <caret line="63" column="47" lean-forward="false" selection-start-line="63" selection-start-column="47" selection-end-line="63" selection-end-column="47" />
               <folding>
                 <element signature="e#0#64#0" expanded="true" />
               </folding>
@@ -43,8 +46,8 @@
       <file leaf-file-name="App.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="507">
-              <caret line="40" column="8" lean-forward="false" selection-start-line="40" selection-start-column="8" selection-end-line="44" selection-end-column="68" />
+            <state relative-caret-position="432">
+              <caret line="47" column="1" lean-forward="false" selection-start-line="47" selection-start-column="1" selection-end-line="47" selection-end-column="1" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -55,7 +58,7 @@
       <file leaf-file-name="DependenciesBumper.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controllers/DependenciesBumper.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="447">
+            <state relative-caret-position="900">
               <caret line="60" column="71" lean-forward="false" selection-start-line="60" selection-start-column="55" selection-end-line="60" selection-end-column="71" />
               <folding>
                 <element signature="e#0#64#0" expanded="true" />
@@ -67,8 +70,8 @@
       <file leaf-file-name="TestRunner.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controllers/TestRunner.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="46" column="39" lean-forward="false" selection-start-line="46" selection-start-column="39" selection-end-line="46" selection-end-column="39" />
+            <state relative-caret-position="267">
+              <caret line="46" column="31" lean-forward="false" selection-start-line="46" selection-start-column="31" selection-end-line="46" selection-end-column="31" />
               <folding>
                 <element signature="e#0#64#0" expanded="true" />
               </folding>
@@ -79,8 +82,8 @@
       <file leaf-file-name="NodeVulnerAnalyzer.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controllers/NodeVulnerAnalyzer.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+            <state relative-caret-position="283">
+              <caret line="57" column="23" lean-forward="false" selection-start-line="57" selection-start-column="23" selection-end-line="57" selection-end-column="23" />
               <folding>
                 <element signature="e#0#64#0" expanded="true" />
               </folding>
@@ -108,11 +111,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="readme.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="readme.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/readme.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="114" column="31" lean-forward="false" selection-start-line="114" selection-start-column="31" selection-end-line="114" selection-end-column="31" />
+            <state relative-caret-position="1575">
+              <caret line="105" column="0" lean-forward="false" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -124,7 +127,7 @@
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1508321315652" expanded="true" signature="1778:1825" ph="{...}" />
+                <marker date="1508323686566" expanded="true" signature="1778:1825" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -156,15 +159,15 @@
         <option value="$PROJECT_DIR$/.eslintrc.yaml" />
         <option value="$PROJECT_DIR$/src/controllers/ContainerStarter.ts" />
         <option value="$PROJECT_DIR$/src/controllers/ContainerCreator.ts" />
-        <option value="$PROJECT_DIR$/src/controllers/ContainerExtractor.ts" />
         <option value="$PROJECT_DIR$/src/controllers/NodeVulnAnalyzer.ts" />
         <option value="$PROJECT_DIR$/src/App.ts" />
-        <option value="$PROJECT_DIR$/src/controllers/TestRunner.ts" />
-        <option value="$PROJECT_DIR$/src/controllers/NodeVulnerAnalyzer.ts" />
         <option value="$PROJECT_DIR$/src/controllers/DependenciesBumper.ts" />
-        <option value="$PROJECT_DIR$/src/controllers/ImageFetcher.ts" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/readme.md" />
+        <option value="$PROJECT_DIR$/src/controllers/ImageFetcher.ts" />
+        <option value="$PROJECT_DIR$/src/controllers/ContainerExtractor.ts" />
+        <option value="$PROJECT_DIR$/src/controllers/TestRunner.ts" />
+        <option value="$PROJECT_DIR$/src/controllers/NodeVulnerAnalyzer.ts" />
       </list>
     </option>
   </component>
@@ -283,12 +286,12 @@
       <workItem from="1508313998026" duration="463000" />
       <workItem from="1508314478180" duration="805000" />
       <workItem from="1508315591260" duration="1410000" />
-      <workItem from="1508317149193" duration="6323000" />
+      <workItem from="1508317149193" duration="6835000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22284000" />
+    <option name="totallyTimeSpent" value="22796000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-4" width="1366" height="725" extended-state="6" />
@@ -387,7 +390,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1508321315652" expanded="true" signature="1778:1825" ph="{...}" />
+            <marker date="1508323686566" expanded="true" signature="1778:1825" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -452,7 +455,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1508321315652" expanded="true" signature="1778:1825" ph="{...}" />
+            <marker date="1508323686566" expanded="true" signature="1778:1825" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -536,7 +539,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1508321315652" expanded="true" signature="1778:1825" ph="{...}" />
+            <marker date="1508323686566" expanded="true" signature="1778:1825" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -601,7 +604,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1508321315652" expanded="true" signature="1778:1825" ph="{...}" />
+            <marker date="1508323686566" expanded="true" signature="1778:1825" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -650,7 +653,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1508321315652" expanded="true" signature="1778:1825" ph="{...}" />
+            <marker date="1508323686566" expanded="true" signature="1778:1825" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -680,36 +683,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controllers/ContainerExtractor.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-210">
-          <caret line="25" column="31" lean-forward="false" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controllers/ImageFetcher.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="23" column="31" lean-forward="false" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controllers/TestRunner.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="46" column="39" lean-forward="false" selection-start-line="46" selection-start-column="39" selection-end-line="46" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.eslintrc.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="585">
@@ -726,20 +699,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/readme.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1575">
+          <caret line="105" column="0" lean-forward="false" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="40" column="8" lean-forward="false" selection-start-line="40" selection-start-column="8" selection-end-line="44" selection-end-column="68" />
+        <state relative-caret-position="432">
+          <caret line="47" column="1" lean-forward="false" selection-start-line="47" selection-start-column="1" selection-end-line="47" selection-end-column="1" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/controllers/TestRunner.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="46" column="31" lean-forward="false" selection-start-line="46" selection-start-column="31" selection-end-line="46" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/NodeVulnerAnalyzer.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        <state relative-caret-position="283">
+          <caret line="57" column="23" lean-forward="false" selection-start-line="57" selection-start-column="23" selection-end-line="57" selection-end-column="23" />
           <folding>
             <element signature="e#0#64#0" expanded="true" />
           </folding>
@@ -748,7 +739,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/DependenciesBumper.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
+        <state relative-caret-position="900">
           <caret line="60" column="71" lean-forward="false" selection-start-line="60" selection-start-column="55" selection-end-line="60" selection-end-column="71" />
           <folding>
             <element signature="e#0#64#0" expanded="true" />
@@ -756,11 +747,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/readme.md">
+    <entry file="file://$PROJECT_DIR$/src/controllers/ContainerExtractor.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="114" column="31" lean-forward="false" selection-start-line="114" selection-start-column="31" selection-end-line="114" selection-end-column="31" />
-          <folding />
+        <state relative-caret-position="270">
+          <caret line="63" column="47" lean-forward="false" selection-start-line="63" selection-start-column="47" selection-end-line="63" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controllers/ImageFetcher.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="40" column="61" lean-forward="true" selection-start-line="40" selection-start-column="61" selection-end-line="40" selection-end-column="61" />
+          <folding>
+            <element signature="e#0#64#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

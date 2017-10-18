@@ -30,21 +30,21 @@ export class TestRunner {
             ch: child.ChildProcess = child.exec("cd " + path + " && npm test > result.txt", function (error, stdout, stderr) {
                 ch: child.ChildProcess = child.exec("cd " + path + " && cat result.txt", function(error, stdout, stderr) {
                     if (error) {
-                        res.status(500)
+                        return res.status(500)
                             .send({
                                 message: error,
                                 status: res.status
                             });
                     }
                     if (stdout) {
-                        res.status(200)
+                        return res.status(200)
                             .send({
                                 message: stdout,
                                 status: res.status
                             });
                     }
                     if (stderr) {
-                        res.status(401)
+                        return res.status(401)
                             .send({
                                 message: stderr,
                                 status: res.status

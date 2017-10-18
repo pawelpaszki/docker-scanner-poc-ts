@@ -35,13 +35,13 @@ export class NodeVulnerAnalyzer {
                             ch: child.ChildProcess = child.exec("cd " + path + " && cat vuln.json", function (error, stdout, stderr) {
                                 console.log("stdout" + stdout + " stderr " + stderr);
                                 if (error) {
-                                    res.status(500)
+                                    return res.status(500)
                                         .send({
                                             message: error,
                                             status: res.status
                                         });
                                 } else {
-                                    res.status(200)
+                                    return res.status(200)
                                         .send({
                                             message: stdout.toString(),
                                             status: res.status
@@ -55,7 +55,7 @@ export class NodeVulnerAnalyzer {
                 });
             }
             if (stderr) {
-                res.status(401)
+                return res.status(401)
                     .send({
                         message: stderr,
                         status: res.status

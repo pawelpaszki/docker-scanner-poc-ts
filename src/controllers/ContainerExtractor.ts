@@ -46,7 +46,7 @@ export class ContainerExtractor {
                         ch: child.ChildProcess = child.exec("tar -x -f test.tar --directory ../test_dir", function (error, stdout, stderr) {
                             console.log("Start extracting from tar");
                             if (error) {
-                                res.status(500)
+                                return res.status(500)
                                     .send({
                                         message: error,
                                         status: res.status
@@ -55,13 +55,13 @@ export class ContainerExtractor {
                                 container.stop();
                                 ch: child.ChildProcess = child.exec("rm -rf test.tar", function (error, stdout, stderr) {
                                     if (error) {
-                                        res.status(500)
+                                        return res.status(500)
                                             .send({
                                                 message: error,
                                                 status: res.status
                                             });
                                     } else {
-                                        res.status(200)
+                                        return res.status(200)
                                             .send({
                                                 message: "container extracted",
                                                 status: res.status

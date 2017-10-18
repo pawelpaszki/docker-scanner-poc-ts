@@ -14,21 +14,21 @@ export class ImageFetcher {
         let imageName = req.body.name;
         let ch: child.ChildProcess = child.exec("docker pull " + imageName, function (error, stdout, stderr) {
             if (error) {
-                res.status(500)
+                return res.status(500)
                     .send({
                         message: error,
                         status: res.status
                     });
             }
             if (stdout) {
-                res.status(200)
+                return res.status(200)
                     .send({
                         message: "image successfully pulled",
                         status: res.status
                     });
             }
             if (stdout) {
-                res.status(401)
+                return res.status(401)
                     .send({
                         message: stderr,
                         status: res.status
