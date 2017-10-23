@@ -1,6 +1,6 @@
 import {Router, Request, Response, NextFunction} from 'express';
 
-import * as child from 'child_process';
+import {ChildProcessHandler} from "./ChildProcessHandler";
 
 export class NodeVulnerAnalyzer {
     private router: Router;
@@ -12,59 +12,44 @@ export class NodeVulnerAnalyzer {
 
     public analyzeSourceCode(req: Request, res: Response, next: NextFunction) {
         let path = req.body.path;
-        let ch: child.ChildProcess = child.exec("cd " + path + " && find . -maxdepth 1 -name \"package.json\"", function (error, stdout, stderr) {
-            if (error) {
-                return res.status(500)
-                    .send({
-                        message: error,
-                        status: res.status
-                    });
-            }
-            if(stdout.length == 0) {
-                return res.status(500)
-                    .send({
-                        message: "invalid directory",
-                        status: res.status
-                    });
-            }
-            if (stdout) {
-                ch: child.ChildProcess = child.exec("cd " + path + " && nsp check --output json 2>> vuln.json", function (error, stdout, stderr) {
-                    console.log("stdout" + stdout + " stderr " + stderr + " error" + error);
-                    if (error) {
-                        if(stdout != null) {
-                            ch: child.ChildProcess = child.exec("cd " + path + " && cat vuln.json", function (error, stdout, stderr) {
-                                console.log("stdout" + stdout + " stderr " + stderr);
-                                if (error) {
-                                    return res.status(500)
-                                        .send({
-                                            message: error,
-                                            status: res.status
-                                        });
-                                } else {
-                                    return res.status(200)
-                                        .send({
-                                            message: stdout.toString(),
-                                            status: res.status
-                                        });
-                                }
-
-                            });
-                        }
+        let successMessage, errorMessage = "placeholder - not needed";
+        let testRan = false;
+        async function checkVuln () {
+            try {
+                // check if package.json exists in directory
+                let output = await ChildProcessHandler.executeIntermediateChildProcCommand("cd " + path + " && find . -maxdepth 1 -name \"package.json\"", false);
+                if(output.lentgh == 0) {
+                    this.throwError(res);
+                } else {
+                    // run vuln test
+                    testRan = true;
+                    output = await ChildProcessHandler.executeIntermediateChildProcCommand("cd " + path + " && nsp check --output json 2>> vuln.json", true);
+                    if(output != null) {
+                        // output results
+                        await ChildProcessHandler.executeFinalChildProcessCommand("cd " + path + " && cat vuln.json", successMessage, res, errorMessage, true);
                     }
-
-                });
+                }
+            } catch (error) {
+                // possible to get errors as a result of vuln check
+                if(testRan) {
+                    await ChildProcessHandler.executeFinalChildProcessCommand("cd " + path + " && cat vuln.json", successMessage, res, errorMessage, true);
+                } else {
+                    this.throwError(res, "unable to run tests");
+                }
             }
-            if (stderr) {
-                return res.status(401)
-                    .send({
-                        message: stderr,
-                        status: res.status
-                    });
-            }
-        });
+        }
+        checkVuln();
     }
 
     private init() {
         this.router.post('/api/analyzeSourceCode', this.analyzeSourceCode);
+    }
+
+    private throwError(res:Response, message: string) {
+        return res.status(500)
+            .send({
+                message: message,
+                status: res.status
+            });
     }
 }

@@ -1,6 +1,6 @@
 import {Router, Request, Response, NextFunction} from 'express';
 
-import * as child from 'child_process';
+import {ChildProcessHandler} from "./ChildProcessHandler";
 
 export class TestRunner {
     private router: Router;
@@ -12,50 +12,43 @@ export class TestRunner {
 
     public runTests(req: Request, res: Response, next: NextFunction) {
         let path = req.body.path;
-        let ch: child.ChildProcess = child.exec("cd " + path + " && find . -maxdepth 1 -name \"package.json\"", function (error, stdout, stderr) {
-            if (error) {
-                return res.status(500)
-                    .send({
-                        message: error,
-                        status: res.status
-                    });
+        let successMessage, errorMessage = "placeholder - not needed";
+        let testRan = false;
+        async function runNodeTests () {
+            try {
+                // check if package.json exists in directory
+                let output = await ChildProcessHandler.executeIntermediateChildProcCommand("cd " + path + " && find . -maxdepth 1 -name \"package.json\"", false);
+                if (output.lentgh == 0) {
+                    this.throwError(res, "invalid directory");
+                } else {
+                    // run docker tests
+                    testRan = true;
+                    output = await ChildProcessHandler.executeIntermediateChildProcCommand("cd " + path + " && npm test > result.txt", true);
+                    if(output != null) {
+                        await ChildProcessHandler.executeFinalChildProcessCommand("cd " + path + " && cat result.txt", successMessage, res, errorMessage, true);
+                    }
+                }
+            } catch (error) {
+                // possible to get errors when running tests
+                if(testRan) {
+                    await ChildProcessHandler.executeFinalChildProcessCommand("cd " + path + " && cat result.txt", successMessage, res, errorMessage, true);
+                } else {
+                    this.throwError(res, "unable to run tests");
+                }
             }
-            if(stdout.length == 0) {
-                return res.status(500)
-                    .send({
-                        message: "invalid directory",
-                        status: res.status
-                    });
-            }
-            ch: child.ChildProcess = child.exec("cd " + path + " && npm test > result.txt", function (error, stdout, stderr) {
-                ch: child.ChildProcess = child.exec("cd " + path + " && cat result.txt", function(error, stdout, stderr) {
-                    if (error) {
-                        return res.status(500)
-                            .send({
-                                message: error,
-                                status: res.status
-                            });
-                    }
-                    if (stdout) {
-                        return res.status(200)
-                            .send({
-                                message: stdout,
-                                status: res.status
-                            });
-                    }
-                    if (stderr) {
-                        return res.status(401)
-                            .send({
-                                message: stderr,
-                                status: res.status
-                            });
-                    }
-                });
-            });
-        });
+        }
+        runNodeTests();
     }
 
     private init() {
         this.router.post('/api/runTests', this.runTests);
+    }
+
+    private throwError(res:Response, message: string) {
+        return res.status(500)
+            .send({
+                message: message,
+                status: res.status
+            });
     }
 }

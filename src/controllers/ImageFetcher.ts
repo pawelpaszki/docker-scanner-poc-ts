@@ -1,6 +1,6 @@
-import {Router, Request, Response, NextFunction} from 'express';
+import {Router, Request, Response} from 'express';
 
-import * as child from 'child_process';
+import {ChildProcessHandler} from "./ChildProcessHandler";
 
 export class ImageFetcher {
     private router: Router;
@@ -10,34 +10,15 @@ export class ImageFetcher {
         this.init();
     }
 
-    public fetchImage(req: Request, res: Response, next: NextFunction) {
+    fetchImage(req: Request, res: Response) {
         let imageName = req.body.name;
-        let ch: child.ChildProcess = child.exec("docker pull " + imageName, function (error, stdout, stderr) {
-            if (error) {
-                return res.status(500)
-                    .send({
-                        message: error,
-                        status: res.status
-                    });
-            }
-            if (stdout) {
-                return res.status(200)
-                    .send({
-                        message: "image successfully pulled",
-                        status: res.status
-                    });
-            }
-            if (stdout) {
-                return res.status(401)
-                    .send({
-                        message: stderr,
-                        status: res.status
-                    });
-            }
-        });
+        let successMessage = "image successfully pulled";
+        ChildProcessHandler.executeFinalChildProcessCommand("docker pull " + imageName, successMessage, res,  "could not pull the image: " + imageName, false);
+
     }
 
     private init() {
         this.router.post('/api/fetchImage', this.fetchImage);
     }
 }
+

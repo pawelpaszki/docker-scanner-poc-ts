@@ -1,12 +1,7 @@
 import {Router, Request, Response, NextFunction} from 'express';
 
-import * as child from 'child_process';
-import * as Docker from 'dockerode';
-import * as fs from 'fs';
-
-let docker = new Docker({
-    socketPath: '/var/run/docker.sock'
-});
+import {DockerodeContainerExtractor} from "./DockerodeContainerExtractor";
+import {ChildProcessHandler} from "./ChildProcessHandler";
 
 export class ContainerExtractor {
     private router: Router;
@@ -18,65 +13,38 @@ export class ContainerExtractor {
 
     public extractContainer(req: Request, res: Response, next: NextFunction) {
         let containerName = req.body.name;
+        let successMessage = "container extracted";
+        let errorMessage = "unable to extract container";
+        let mkdirStarted = false;
 
-        docker.createContainer({
-            Image: containerName,
-            AttachStdin: false,
-            AttachStdout: true,
-            AttachStderr: true,
-            Tty: true,
-            OpenStdin: false,
-            StdinOnce: false
-        }).then(function (container) {
-            container.start();
-            // export container to .tar
-            container.export(function (err, stream) {
-                if (err) {
-                    return console.log("Error when exporting");
+        async function extractCont () {
+            try {
+                let output = await DockerodeContainerExtractor.extractContainer(containerName);
+                mkdirStarted = true;
+                await ChildProcessHandler.executeIntermediateChildProcCommand("cd .. && mkdir test_dir", true);
+                await ChildProcessHandler.executeIntermediateChildProcCommand("tar -x -f test.tar --directory ../test_dir", true);
+                await ChildProcessHandler.executeFinalChildProcessCommand("rm -rf test.tar", successMessage, res, errorMessage, true);
+
+            } catch (error) {
+                if(mkdirStarted) {
+                    await ChildProcessHandler.executeIntermediateChildProcCommand("tar -x -f test.tar --directory ../test_dir", true);
+                    await ChildProcessHandler.executeFinalChildProcessCommand("rm -rf test.tar", successMessage, res, errorMessage, true);
                 }
-                console.log("Start writing to tar");
-                let ws = fs.createWriteStream("test.tar");
-                stream.pipe(ws);
-                ws.on('finish', function () {
-                    let ch: child.ChildProcess = child.exec("cd .. && mkdir test_dir", function (error, stdout, stderr) {
-                        if (error) {
-                            console.log('error: ' + error);
-                        }
-                        // untar exported container into newly created directory
-                        ch: child.ChildProcess = child.exec("tar -x -f test.tar --directory ../test_dir", function (error, stdout, stderr) {
-                            console.log("Start extracting from tar");
-                            if (error) {
-                                return res.status(500)
-                                    .send({
-                                        message: error,
-                                        status: res.status
-                                    });
-                            } else {
-                                container.stop();
-                                ch: child.ChildProcess = child.exec("rm -rf test.tar", function (error, stdout, stderr) {
-                                    if (error) {
-                                        return res.status(500)
-                                            .send({
-                                                message: error,
-                                                status: res.status
-                                            });
-                                    } else {
-                                        return res.status(200)
-                                            .send({
-                                                message: "container extracted",
-                                                status: res.status
-                                            });
-                                    }
-                                });
-                            }
-                        });
-                    });
-                });
-            });
-        });
+            }
+        }
+
+        extractCont();
     }
 
     private init() {
         this.router.post('/api/extractContainer', this.extractContainer);
+    }
+
+    private throwError(res:Response, message: string) {
+        return res.status(500)
+            .send({
+                message: message,
+                status: res.status
+            });
     }
 }

@@ -1,6 +1,6 @@
 import {Router, Request, Response, NextFunction} from 'express';
 
-import * as child from 'child_process';
+import {ChildProcessHandler} from "./ChildProcessHandler";
 
 export class DependenciesBumper {
     private router: Router;
@@ -12,49 +12,35 @@ export class DependenciesBumper {
 
     public bumpDependencies(req: Request, res: Response, next: NextFunction) {
         let path = req.body.path;
-        let ch: child.ChildProcess = child.exec("cd " + path + " && find . -maxdepth 1 -name \"package.json\"", function (error, stdout, stderr) {
-            if (error) {
-                return res.status(500)
-                    .send({
-                        message: error,
-                        status: res.status
-                    });
-            }
-            if(stdout.length == 0) {
-                return res.status(500)
-                    .send({
-                        message: "invalid directory",
-                        status: res.status
-                    });
-            }
-            ch: child.ChildProcess = child.exec("cd " + path + " && ncu -a --packageFile package.json", function (error, stdout, stderr) {
-                if (error) {
-                    return res.status(500)
-                        .send({
-                            message: error,
-                            status: res.status
-                        });
+        let successMessage = "components updated";
+        let errorMessage = "Could not update components";
+        async function bumpDeps () {
+            try {
+                // check if package.json exists in directory
+                let output = await ChildProcessHandler.executeIntermediateChildProcCommand("cd " + path + " && find . -maxdepth 1 -name \"package.json\"", false);
+                if(output.lentgh == 0) {
+                    this.throwError(res);
+                } else {
+                    // update components
+                    output = await ChildProcessHandler.executeIntermediateChildProcCommand("cd " + path + " && ncu -a --packageFile package.json", false);
+                    if(output != null) {
+                        // install updated components
+                        await ChildProcessHandler.executeFinalChildProcessCommand("cd " + path + " && npm install", successMessage, res, errorMessage, false);
+                    }
                 }
-                if (stdout != null) {
-                    ch: child.ChildProcess = child.exec("cd " + path + " && npm install", function (error, stdout, stderr) {
-                        if (error) {
-                            return res.status(500)
-                                .send({
-                                    message: error,
-                                    status: res.status
-                                });
-                        }
-                        if(stdout) {
-                            return res.status(200)
-                                .send({
-                                    message: "components updated",
-                                    status: res.status
-                                });
-                        }
-                    });
-                }
+            } catch (error) {
+                this.throwError(res);
+            }
+        }
+        bumpDeps();
+    }
+
+    private throwError(res:Response) {
+        return res.status(500)
+            .send({
+                message: "Invalid directory",
+                status: res.status
             });
-        });
     }
 
     private init() {
