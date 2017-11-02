@@ -11,8 +11,8 @@ export class ChildProcessHandler {
 
     public static executeFinalChildProcessCommand(command: string, successMessage: string, res: Response, errorMessage: string, exactOutputRequired: boolean) {
         let ch: child.ChildProcess = child.exec(command, function (error, stdout, stderr) {
-            console.log("stdout" + stdout + " stderr " + stderr + " error: " + error);
-            console.log(command);
+            //console.log("stdout" + stdout + " stderr " + stderr + " error: " + error);
+            //console.log(command);
             if (error) {
                 return res.status(500)
                     .send({
@@ -51,8 +51,8 @@ export class ChildProcessHandler {
         let p: Promise = new Promise((resolve, reject) => {
             setTimeout(() => {
                 let ch: child.ChildProcess = child.exec(command, function (error, stdout, stderr) {
-                    console.log("stdout" + stdout + " stderr " + stderr + " error " + error);
-                    console.log(command);
+                    // console.log("stdout" + stdout + " stderr " + stderr + " error " + error);
+                    // console.log(command);
                     if (error) {
                         if(errorsPossible === true) {
                             if(error === null) {

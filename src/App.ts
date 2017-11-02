@@ -2,9 +2,10 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import {ImageFetcher} from './controllers/ImageFetcher';
 import {ContainerExtractor} from './controllers/ContainerExtractor';
-import {NodeVulnerAnalyzer} from './controllers/NodeVulnerAnalyzer'
-import {DependenciesBumper} from "./controllers/DependenciesBumper";
-import {TestRunner} from './controllers/TestRunner'
+import {NodeVulnerAnalyzer} from './controllers/NodeVulnerAnalyzer';
+import {DependenciesBumper} from './controllers/DependenciesBumper';
+import {TestRunner} from './controllers/TestRunner';
+import {OSChecker} from './controllers/OSChecker';
 
 class App {
     public express;
@@ -13,6 +14,7 @@ class App {
     private nodeVulnAnalyzer: NodeVulnerAnalyzer;
     private dependenciesBumper: DependenciesBumper;
     private testRunner: TestRunner;
+    private osChecker: OSChecker;
 
     constructor() {
         this.express = express();
@@ -22,6 +24,7 @@ class App {
         this.nodeVulnAnalyzer = new NodeVulnerAnalyzer();
         this.dependenciesBumper = new DependenciesBumper();
         this.testRunner = new TestRunner();
+        this.osChecker = new OSChecker();
         this.mountRoutes();
     }
 
@@ -43,6 +46,7 @@ class App {
         this.express.use('/api/analyzeSourceCode', this.nodeVulnAnalyzer.analyzeSourceCode);
         this.express.use('/api/bumpDependencies', this.dependenciesBumper.bumpDependencies);
         this.express.use('/api/runTests', this.testRunner.runTests);
+        this.express.use('/api/checkos', this.osChecker.checkOS);
         this.express.use('/', router);
     }
 }
