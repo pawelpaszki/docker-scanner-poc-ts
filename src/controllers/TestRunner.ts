@@ -25,7 +25,7 @@ export class TestRunner {
 					testRan = true;
 					output = await ChildProcessHandler.executeIntermediateChildProcCommand("cd " + path + " && npm test > result.txt", true);
 					if(output != null) {
-						await ChildProcessHandler.executeFinalChildProcessCommand("cd " + path + " && cat result.txt", successMessage, res, errorMessage, true);
+						await ChildProcessHandler.executeFinalChildProcessCommand("cd " + path + " && cat result.txt", JSON.parse(successMessage), res, errorMessage, true);
 					}
 				}
 			} catch (error) {

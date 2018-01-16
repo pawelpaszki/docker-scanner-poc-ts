@@ -23,16 +23,16 @@ export class NodeVulnerAnalyzer {
                 } else {
                     // run vuln test
                     testRan = true;
-                    output = await ChildProcessHandler.executeIntermediateChildProcCommand("cd " + path + " && nsp check --output json 2>> vuln.json", true);
+                    output = await ChildProcessHandler.executeIntermediateChildProcCommand("cd " + path + " && nsp check > vuln.txt", true);
                     if(output != null) {
                         // output results
-                        await ChildProcessHandler.executeFinalChildProcessCommand("cd " + path + " && cat vuln.json", successMessage, res, errorMessage, true);
+                        await ChildProcessHandler.executeFinalChildProcessCommand("cd " + path + " && cat vuln.txt", successMessage, res, errorMessage, true);
                     }
                 }
             } catch (error) {
                 // possible to get errors as a result of vuln check
                 if(testRan) {
-                    await ChildProcessHandler.executeFinalChildProcessCommand("cd " + path + " && cat vuln.json", successMessage, res, errorMessage, true);
+                    await ChildProcessHandler.executeFinalChildProcessCommand("cd " + path + " && cat vuln.txt", successMessage, res, errorMessage, true);
                 } else {
                     this.throwError(res, "unable to run tests");
                 }

@@ -66,7 +66,7 @@ export class OSChecker {
                         osVersions.sort();
                         let versionIndex = osVersions.indexOf(osVersion);
                         let message: string;
-                        if(osVersions.length > versionIndex) {
+                        if(osVersion !== osVersions[osVersions.length - 1]) {
                             message = 'OS version in your docker image is not the latest. you use: ' + osName + ' ' + osVersion + ', the latest is: ' + osVersions[osVersions.length - 1];
                             return response.status(200)
                                 .send({
