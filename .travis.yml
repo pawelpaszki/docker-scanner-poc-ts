@@ -1,0 +1,13 @@
+dist: trusty
+sudo: false
+addons:
+  sonarcloud:
+    organization: "pawelpaszki-github" # the key of the org you chose at step #3
+    token:
+        secure: "e/NnQoma1VhdddL3mImUgaHO3oSjy5Xo0LXK0h4IPfTvZm2XoBc8rNRzl/L1mVgVYsOTivUlHss2xlFjV9uYzAQm54wXBCH1WGazPlxsF5ojJe99PI2jA/y5dgUlbAICdKEzCJswqx8ZPFt1usw0ekuBiFpTHhsxlnxfBG4ccl5Wtm48iLWAULTmO92KJWVtxNQ8iBxV/uI3iWhqpTfElFZSWhltrhHkRpRV8JWB9heyhL2UgclW22hn3iikM3rg2YXHN06mhlON5TkSXKdUwkesWrvW8nv6xz+PyhlH93UApAACpbFrycKlLScrNe5iKay1DXp6FIkxf4X4NddHFWpWPu+MWLkt+MIRcuFnjZJCYTvUNpcgA3Vztabgx5KVd6DXkl4u8kAQsN698cGbnhhQfoC4HUCPHNEJIaGMjl90Gt97anT7+T+mmx7oX7VnkGH1elVvRsndTGWB5ylFC9rgdEYz28mXpiepDWVNozDV8nYtLA85Opf3MC4meyYQjJ+4CI5p16hs62Kju3tNWYkZS1O27bUdwBBhy1TTd5OSQ1+cerS5NKVmPDQDjKxawteBUZczC+lHW5Q/xv/JI8B3R9uK59ZLwuRnAaCas1JXSv78UsDDGj+vWOw0IFfzC/p2CzFvHpFR6joCjuy0Tk+kPCHvrl88cX5zT33GMBc="
+language: node_js
+node_js: 6.12.3
+install:
+- npm install
+script:
+- sonar-scanner
